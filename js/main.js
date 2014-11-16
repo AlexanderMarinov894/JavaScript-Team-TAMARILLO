@@ -3,24 +3,35 @@ var ctx = canvas.getContext('2d');
 var W = canvas.width;
 var H = canvas.height;
 
+var shipX = 400;	//default cords for ship
+var shipY = 450;	//default cords for ship
+var ship = new Image();
+ship.src = 'img/spaceship.png';
+var enemy = new Image();
+enemy.src = 'img/enemy.png';
 
-function Drawable() {
-	this.init = function (x, y, width, height) {
-		this._x = x;
-		this._y = y;
-		this._width = width;
-		this._height = height;
-	}
+function drawEnemy() {
+	ctx.drawImage(enemy, 10, 10);
+}
+function drawShip() {
+	ctx.drawImage(ship, shipX, shipY);
 }
 
+function Drawable() {
+	
+}
 function animate() {
-	renderGame();	//render background
+	//renderGame();	//render background
+
 }
 
 
 function init() {
 	animate();
+	drawShip();
+	drawEnemy();
 }
+
 
 
 window.addEventListener('load', init);

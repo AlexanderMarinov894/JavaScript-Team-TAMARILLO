@@ -5,11 +5,20 @@
     <title>Space Invaders</title>
     <link rel="stylesheet" href="css/style.css"/>
     <style>
+        canvas {
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                background: transparent;
+            }
         #mainGame {
+            z-index: -2;
+        }
+        #enemy {
             z-index: -1;
         }
         #ship {
-            z-index: 0;
+            z-index: 123;
         }
     </style>
 </head>
@@ -18,10 +27,11 @@
         <canvas id="mainGame" width="900" height="600">
             Sorry, your browser does not support canvas.
         </canvas>
+        
         <canvas id="ship" width="600" height="360">
         </canvas>
-        <script src="js/main.js"></script>
-        <script src="js/background.js"></script>
+        <script src="js/main.js" defer></script>
+        <script src="js/background.js" defer></script>
     </main>
 </body>
 </html>
