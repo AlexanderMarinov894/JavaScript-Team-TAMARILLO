@@ -19,6 +19,7 @@ function drawEnemy() {
         setTimeout(function enemyAttack() {
             drawEnemy();
             enemyY += 0.1;
+            enemyX += 0.1;
             console.log(enemyY);
         }, 1000);
         move1++;
@@ -53,11 +54,11 @@ function init() {
 document.addEventListener('keydown', function(e) {
 	var keycode = e.keyCode;
 	if(keycode == 39) {   //right
-		shipX += 10;
+		shipX += 25;
 		 //console.log("obj");
 	}
 	if(keycode == 37) {   //left
-		shipX -= 10;
+		shipX -= 25;
 	}
 
 });
