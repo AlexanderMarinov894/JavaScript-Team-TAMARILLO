@@ -15,6 +15,15 @@ enemy.src = 'img/enemy.png';
 function drawEnemy() {
 	ctx.drawImage(enemy, enemyX, enemyY);
 }
+var c = 0;
+while(c < 100) {
+	setTimeout(function enemyAttack() {
+		drawEnemy();
+		enemyY += 2;
+		console.log(enemyY);
+	}, 2000);
+	c++;
+}
 function drawShip() {
 	ctx.drawImage(ship, shipX, shipY);
 }
