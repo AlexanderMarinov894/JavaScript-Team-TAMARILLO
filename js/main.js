@@ -3,7 +3,7 @@ var ctx = canvas.getContext('2d');
 var W = canvas.width;
 var H = canvas.height;
 
-var shipX = 400;	//default cords for ship
+var shipX = 430;	//default cords for ship
 var shipY = 450;	//default cords for ship
 var ship = new Image();
 ship.src = 'img/spaceship.png';
@@ -24,17 +24,35 @@ function Drawable() {
 }
 function animate() {
 	//renderGame();	//render background
-
+	ctx.save();
+	clear();
+	drawShip();
+	window.requestAnimationFrame(animate);
 }
 
-
+function clear() {
+	ctx.clearRect(0,0, W, H);
+}
 function init() {
 	animate();
-	drawShip();
+	//drawShip();
 	drawEnemy();
 }
 
+//move the ship
 
+document.addEventListener('keydown', function(e) {
+	var keycode = e.keyCode;
+	if(keycode == 39) {   //right
+		shipX += 10;
+		 //console.log("obj");
+	}
+	if(keycode == 37) {   //left
+		shipX -= 10;
+	}
+	
+});
+console.log(shipX);
 
 window.addEventListener('load', init);
 
