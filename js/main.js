@@ -5,14 +5,14 @@ var H = canvas.height;
 
 var shipX = 430;	//default cords for ship
 var shipY = 450;	//default cords for ship
+var enemyX = Math.floor(Math.random() * 750);
+var enemyY = -33;
 var ship = new Image();
 ship.src = 'img/spaceship.png';
 var enemy = new Image();
 enemy.src = 'img/enemy.png';
 
 function drawEnemy() {
-    var enemyX = Math.floor(Math.random() * (750 - 0 + 1)) + 0;
-    var enemyY = -33;
 	ctx.drawImage(enemy, enemyX, enemyY);
 }
 function drawShip() {
@@ -27,7 +27,8 @@ function animate() {
 	ctx.save();
 	clear();
 	drawShip();
-	window.requestAnimationFrame(animate);
+    drawEnemy();
+    window.requestAnimationFrame(animate);
 }
 
 function clear() {
@@ -35,8 +36,6 @@ function clear() {
 }
 function init() {
 	animate();
-	//drawShip();
-	drawEnemy();
 }
 
 //move the ship
@@ -50,9 +49,9 @@ document.addEventListener('keydown', function(e) {
 	if(keycode == 37) {   //left
 		shipX -= 10;
 	}
-	
+
 });
-console.log(shipX);
+//console.log(shipX);
 
 window.addEventListener('load', init);
 
