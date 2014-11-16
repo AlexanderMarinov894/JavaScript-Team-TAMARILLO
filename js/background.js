@@ -5,7 +5,7 @@ var H = 600;
 var velocity = 0;
 
 var image = new Image();
-image.src = 'http://fc02.deviantart.net/fs71/i/2012/148/b/c/space___star_cluster_by_mr_rand0m-d51dirc.jpg'; //background
+image.src = 'http://fc02.deviantart.net/fs71/i/2012/148/b/move1/space___star_cluster_by_mr_rand0m-d51dirc.jpg'; //background
 
 function renderGame() {
     window.requestAnimationFrame(renderGame);

@@ -14,16 +14,17 @@ enemy.src = 'img/enemy.png';
 
 function drawEnemy() {
 	ctx.drawImage(enemy, enemyX, enemyY);
+    var move1 = 0;
+    while (move1 < 2) {
+        setTimeout(function enemyAttack() {
+            drawEnemy();
+            enemyY += 0.1;
+            console.log(enemyY);
+        }, 1000);
+        move1++;
+    }
 }
-var c = 0;
-while(c < 100) {
-	setTimeout(function enemyAttack() {
-		drawEnemy();
-		enemyY += 2;
-		console.log(enemyY);
-	}, 2000);
-	c++;
-}
+
 function drawShip() {
 	ctx.drawImage(ship, shipX, shipY);
 }

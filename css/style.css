@@ -4,4 +4,5 @@ main #mainGame {
     float: left;
     margin-left: 70px;
     border: 1px solid black;
+    /*background: url('../img/background_level1.jpg');*/
 }
