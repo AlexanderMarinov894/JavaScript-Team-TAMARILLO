@@ -11,7 +11,9 @@ var enemy = new Image();
 enemy.src = 'img/enemy.png';
 
 function drawEnemy() {
-	ctx.drawImage(enemy, 10, 10);
+    var enemyX = Math.floor(Math.random() * (750 - 0 + 1)) + 0;
+    var enemyY = -33;
+	ctx.drawImage(enemy, enemyX, enemyY);
 }
 function drawShip() {
 	ctx.drawImage(ship, shipX, shipY);
