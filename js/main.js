@@ -22,13 +22,14 @@ function enemyReborn() {
 	drawEnemy();
 	enemyY = -33;
 	enemyX = Math.floor(Math.random() * 750);
+	bulletX = 1000;
 }
 var moveEnemy = enemyY;
 var isHitted = bulletX>= enemyX-30 && 
 			   bulletX <= enemyX + 128;
 while (moveEnemy < 480) {
     setInterval(function enemyAttack() {
-        enemyY += 0.01;
+        enemyY += 0.02;
         if(enemyY >= 450 || (bulletX>= enemyX-30 && bulletX <= enemyX + 128 &&
         					bulletY >= enemyY && bulletY <= enemyY+68)) {
         	console.log('HIT!!!');
