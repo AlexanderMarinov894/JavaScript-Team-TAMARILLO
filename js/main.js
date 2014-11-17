@@ -27,9 +27,10 @@ function drawEnemy() {
     }
 }
 //var bulletX = shipX;
+var bulletX = shipX+45;
 var bulletY = shipY - 40;
 function drawBullet() {
-	ctx.drawImage(bullet, shipX+45, bulletY);
+	ctx.drawImage(bullet, bulletX, bulletY);
 }
 setTimeout()
 function drawShip() {
@@ -57,37 +58,38 @@ function init() {
 }
 
 //move the ship
+var isFired = false;
 var staticBullet = bulletY;
 document.addEventListener('keydown', function(e) {
 	var keycode = e.keyCode;
 	if(keycode == 39) {   //right
 		shipX += 25;
-		 //console.log("obj");
 	}
 	if(keycode == 37) {   //left
 		shipX -= 25;
 	}
 	if(keycode == 17) {  //ctrl  fire
-		var temp = bulletY;
-		bulletY = staticBullet;
-		while(temp > 0) {
-			setInterval(function(){
-				ctx.save();
-				//clear();
-				drawBullet();
-				if (bulletY <= 1) {
-					
-					return;
-				}
-				bulletY -= 10;
-				//bulletX += 0.1;
-				console.log(bulletY);
-			},20);
-			temp-= bulletY;
+		if (!isFired) {
+			var temp = bulletY;
+			bulletX = shipX + 45;
+			bulletY = staticBullet;
+			while(temp > 0) {
+				setInterval(function(){
+					if (bulletY <= -40) {		
+						isFired = false;		
+						return;
+					}
+					bulletY -= 10;
+					//bulletX += 0.1;
+					console.log(bulletY);
+				},20);
+				temp-= bulletY;
+			}
 			
-		}
-		
+		};
+		isFired = true;
 	}
+
 	console.log("last" + bulletY);
 	//clear();
 });
