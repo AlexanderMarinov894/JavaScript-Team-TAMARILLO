@@ -26,10 +26,10 @@ function drawEnemy() {
         move1++;
     }
 }
-var bulletX = shipX;
+//var bulletX = shipX;
 var bulletY = shipY - 40;
 function drawBullet() {
-	ctx.drawImage(bullet, bulletX, bulletY);
+	ctx.drawImage(bullet, shipX+45, bulletY);
 }
 setTimeout()
 function drawShip() {
@@ -78,7 +78,9 @@ document.addEventListener('keydown', function(e) {
 				//bulletX += 0.1;
 			},100);
 			temp--;
+			//console.log(temp);
 		}
+
 	}
 
 });
