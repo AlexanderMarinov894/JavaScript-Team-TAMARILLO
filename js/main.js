@@ -15,24 +15,39 @@ var bullet = new Image();
 bullet.src = 'img/bullet.png';
 function drawEnemy() {
 	ctx.drawImage(enemy, enemyX, enemyY);
-    var move1 = 0;
-    while (move1 < 2) {
-        setTimeout(function enemyAttack() {
-            drawEnemy();
-            enemyY += 0.1;
-            enemyX += 0.1;
-            console.log(enemyY);
-        }, 1000);
-        move1++;
-    }
+    
+}
+function enemyReborn() {
+	clear();
+	drawEnemy();
+	enemyY = -33;
+	enemyX = Math.floor(Math.random() * 750);
+}
+var moveEnemy = enemyY;
+var isHitted = bulletX>= enemyX-30 && 
+			   bulletX <= enemyX + 128;
+while (moveEnemy < 480) {
+    setInterval(function enemyAttack() {
+        enemyY += 0.01;
+        if(enemyY >= 450 || (bulletX>= enemyX-30 && bulletX <= enemyX + 128 &&
+        					bulletY >= enemyY && bulletY <= enemyY+68)) {
+        	console.log('HIT!!!');
+        	enemyReborn();
+        	return;
+        }
+       // console.log(enemyY);
+        console.log("enemy - >" +enemyY);
+        
+    }, 3);
+    moveEnemy-=enemyY;
 }
 //var bulletX = shipX;
 var bulletX = shipX+45;
 var bulletY = shipY - 40;
 function drawBullet() {
 	ctx.drawImage(bullet, bulletX, bulletY);
+
 }
-setTimeout()
 function drawShip() {
 	ctx.drawImage(ship, shipX, shipY);
 }
@@ -46,7 +61,7 @@ function animate() {
 	clear();
 	drawShip();
 	drawBullet();
-    //drawEnemy();
+   	drawEnemy();
     window.requestAnimationFrame(animate);
 }
 
@@ -58,7 +73,7 @@ function init() {
 }
 
 //move the ship
-var isFired = false;
+var isFired = false;		//check whether a fire ball was fired
 var staticBullet = bulletY;
 document.addEventListener('keydown', function(e) {
 	var keycode = e.keyCode;
@@ -69,20 +84,21 @@ document.addEventListener('keydown', function(e) {
 		shipX -= 25;
 	}
 	if(keycode == 17) {  //ctrl  fire
+
 		if (!isFired) {
 			var temp = bulletY;
 			bulletX = shipX + 45;
 			bulletY = staticBullet;
+
 			while(temp > 0) {
 				setInterval(function(){
 					if (bulletY <= -40) {		
 						isFired = false;		
 						return;
 					}
-					bulletY -= 10;
-					//bulletX += 0.1;
-					console.log(bulletY);
-				},20);
+					bulletY -= 5.01;
+					console.log(" bullet - > " +bulletY);
+				},15);
 				temp-= bulletY;
 			}
 			
@@ -90,10 +106,8 @@ document.addEventListener('keydown', function(e) {
 		isFired = true;
 	}
 
-	console.log("last" + bulletY);
-	//clear();
+	//console.log("last" + bulletY);
 });
-//console.log(shipX);
 
 window.addEventListener('load', init);
 
