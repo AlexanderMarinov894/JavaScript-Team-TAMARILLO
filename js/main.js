@@ -78,11 +78,19 @@ var isFired = false;		//check whether a fire ball was fired
 var staticBullet = bulletY;
 document.addEventListener('keydown', function(e) {
 	var keycode = e.keyCode;
-	if(keycode == 39) {   //right
-		shipX += 25;
+	if(keycode == 39) {				//right
+	   if(shipX >= W - 118){
+			shipX += 0;
+	   }else{
+		   shipX += 25;
+	   }
 	}
-	if(keycode == 37) {   //left
-		shipX -= 25;
+	if(keycode == 37) {							   //left
+		if(shipX <= 0){
+			shipX -= 0;
+		}else{
+			shipX -= 25;
+		}
 	}
 	if(keycode == 17) {  //ctrl  fire
 
@@ -109,6 +117,8 @@ document.addEventListener('keydown', function(e) {
 
 	//console.log("last" + bulletY);
 });
+
+
 
 window.addEventListener('load', init);
 
