@@ -57,7 +57,7 @@ function init() {
 }
 
 //move the ship
-
+var staticBullet = bulletY;
 document.addEventListener('keydown', function(e) {
 	var keycode = e.keyCode;
 	if(keycode == 39) {   //right
@@ -69,20 +69,27 @@ document.addEventListener('keydown', function(e) {
 	}
 	if(keycode == 17) {  //ctrl  fire
 		var temp = bulletY;
+		bulletY = staticBullet;
 		while(temp > 0) {
 			setInterval(function(){
 				ctx.save();
-				clear();
+				//clear();
 				drawBullet();
-				bulletY -= 0.1;
+				if (bulletY <= 1) {
+					
+					return;
+				}
+				bulletY -= 10;
 				//bulletX += 0.1;
-			},100);
-			temp--;
-			//console.log(temp);
+				console.log(bulletY);
+			},20);
+			temp-= bulletY;
+			
 		}
-
+		
 	}
-
+	console.log("last" + bulletY);
+	//clear();
 });
 //console.log(shipX);
 
