@@ -11,7 +11,8 @@ var ship = new Image();
 ship.src = 'img/spaceship.png';
 var enemy = new Image();
 enemy.src = 'img/enemy.png';
-
+var bullet = new Image();
+bullet.src = 'img/bullet.png';
 function drawEnemy() {
 	ctx.drawImage(enemy, enemyX, enemyY);
     var move1 = 0;
@@ -25,7 +26,12 @@ function drawEnemy() {
         move1++;
     }
 }
-
+var bulletX = shipX;
+var bulletY = shipY - 40;
+function drawBullet() {
+	ctx.drawImage(bullet, bulletX, bulletY);
+}
+setTimeout()
 function drawShip() {
 	ctx.drawImage(ship, shipX, shipY);
 }
@@ -38,7 +44,8 @@ function animate() {
 	ctx.save();
 	clear();
 	drawShip();
-    drawEnemy();
+	drawBullet();
+    //drawEnemy();
     window.requestAnimationFrame(animate);
 }
 
@@ -59,6 +66,19 @@ document.addEventListener('keydown', function(e) {
 	}
 	if(keycode == 37) {   //left
 		shipX -= 25;
+	}
+	if(keycode == 17) {  //ctrl  fire
+		var temp = bulletY;
+		while(temp > 0) {
+			setInterval(function(){
+				ctx.save();
+				clear();
+				drawBullet();
+				bulletY -= 0.1;
+				//bulletX += 0.1;
+			},100);
+			temp--;
+		}
 	}
 
 });
