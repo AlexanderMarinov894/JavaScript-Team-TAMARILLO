@@ -32,13 +32,15 @@ function changeScore () {
     ctxControls.fillText('Score: ' + score, 20, 20);
 }
 
-function lostLife () {
-    ctxControls.clearRect(140,0, 160, 20);
+function printLostLife() {
+    ctxControls.clearRect(180,0, 160, 20);
     ctxControls.fillText('Lives: ' + lives, 180, 20);
-    if (enemyY >= 400 && enemyY < 401) {
-        lives--;
-        if(lives == 0) {
-            if(!alert("Game over bro, you've been eaten by aliens!!")){window.location.reload();}
-        }
+}
+
+function lostLife () {
+    lives--;
+    console.log(enemyY);
+    if(lives == 0) {
+        if(!alert("Game over bro, you've been eaten by aliens!!")){window.location.reload();}
     }
 }

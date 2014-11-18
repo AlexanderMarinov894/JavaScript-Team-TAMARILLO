@@ -32,32 +32,35 @@ function enemyReborn() {
 	bulletX = 1000;
 }
 var moveEnemy = enemyY;
-var tempScore = 0;
 var currentLevel = 0;
 while (moveEnemy < 480) {
-    setInterval(function enemyAttack() {
-    	if((bulletX>= enemyX-30 && bulletX <= enemyX + 128 &&
-    					bulletY >= enemyY && bulletY <= enemyY+68)) {
-    		score += 1000; //Adding point to the score
-	    	if(score == 10000 || score == 20000 || score == 30000) {
-	    		level++;
-	    	}
-    	}
-    	if (currentLevel < level) {
-    		changeLevel();
-    		currentLevel = level;
-    	};
+	setInterval(function enemyAttack() {
+		if((bulletX>= enemyX-30 && bulletX <= enemyX + 128 &&
+			bulletY >= enemyY && bulletY <= enemyY+68)) {
+			score += 1000; //Adding point to the score
+			if(score == 10000 || score == 20000 || score == 30000) {
+				level++;
+			}
+		}
+		if (currentLevel < level) {
+			changeLevel();
+			currentLevel = level;
+		}
 
-        enemyY += enemySpeed;
-        if(enemyY >= 450 || (bulletX>= enemyX-30 && bulletX <= enemyX + 128 &&
-        					bulletY >= enemyY && bulletY <= enemyY+68)) {
-        	enemyReborn();
-        	return;
-        }
-        //console.log("enemy - >" +enemyY);
-        
-    }, 3);
-    moveEnemy-=enemyY;
+		enemyY += enemySpeed;
+		if((bulletX>= enemyX-30 && bulletX <= enemyX + 128 &&
+			bulletY >= enemyY && bulletY <= enemyY+68)) {
+			enemyReborn();
+			return;
+		} else if (enemyY >= 450) {
+			lostLife();
+			enemyReborn();
+			return;
+		}
+		//console.log("enemy - >" +enemyY);
+
+	}, 3);
+	moveEnemy-=enemyY;
 }
 //var bulletX = shipX;
 var bulletX = shipX+45;
@@ -90,7 +93,7 @@ function animate() {
 	}
    	drawEnemy();
 	changeScore();
-    lostLife();
+	printLostLife();
     window.requestAnimationFrame(animate);
 }
 
