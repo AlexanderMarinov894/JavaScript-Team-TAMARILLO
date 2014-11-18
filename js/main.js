@@ -15,7 +15,10 @@ var bullet = new Image();
 bullet.src = 'img/bullet.png';
 var score = 0; //Initial score
 var lives = 3;
-
+var level = 0;		//Initial level 
+var enemySpeed = 0.02;	//Initial enemy speed
+var bulletSpeed = 5.01;	//Initial bullet speed
+var shipSpeed = 25;		//Initial ship speed
 function drawEnemy() {
 	ctx.drawImage(enemy, enemyX, enemyY);
     
@@ -29,17 +32,22 @@ function enemyReborn() {
 }
 var moveEnemy = enemyY;
 var tempScore = 0;
-
+var currentLevel = 0;
 while (moveEnemy < 480) {
     setInterval(function enemyAttack() {
     	if((bulletX>= enemyX-30 && bulletX <= enemyX + 128 &&
     					bulletY >= enemyY && bulletY <= enemyY+68)) {
     		score += 1000; //Adding point to the score
+	    	if(score == 10000 || score == 20000 || score == 30000) {
+	    		level++;
+	    	}
     	}
-    	if(score > 0 && score % 5000 == 0) {
-    		enemyY += 0.03;
-    	}
-        enemyY += 0.02;
+    	if (currentLevel < level) {
+    		changeLevel();
+    		currentLevel = level;
+    	};
+
+        enemyY += enemySpeed;
         if(enemyY >= 450 || (bulletX>= enemyX-30 && bulletX <= enemyX + 128 &&
         					bulletY >= enemyY && bulletY <= enemyY+68)) {
         	//console.log('HIT!!!');
@@ -60,6 +68,13 @@ function drawBullet() {
 	ctx.drawImage(bullet, bulletX, bulletY);
 
 }
+function changeLevel() {
+	//change background
+	enemySpeed += enemySpeed;
+	bulletSpeed += 3;
+	shipSpeed += 10;
+}
+
 function drawShip() {
 	ctx.drawImage(ship, shipX, shipY);
 }
@@ -97,14 +112,14 @@ document.addEventListener('keydown', function(e) {
 	   if(shipX >= W - 118){
 			shipX += 0;
 	   }else{
-		   shipX += 25;
+		   shipX += shipSpeed;
 	   }
 	}
 	if(keycode == 37) {							   //left
 		if(shipX <= 0){
 			shipX -= 0;
 		}else{
-			shipX -= 25;
+			shipX -= shipSpeed;
 		}
 	}
 	if(keycode == 17) {  //ctrl  fire
@@ -120,7 +135,7 @@ document.addEventListener('keydown', function(e) {
 						isFired = false;		
 						return;
 					}
-					bulletY -= 5.01;
+					bulletY -= bulletSpeed;
 					//console.log(" bullet - > " +bulletY);
 				},15);
 				temp-= bulletY;
