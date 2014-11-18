@@ -126,9 +126,15 @@ document.addEventListener('keydown', function(e) {
 				temp-= bulletY;
 			}
 			
-		};
+		}
 		isFired = true;
 	}
+
+    if(keycode == 80) {							   //P - pause
+        alert('Now you are free to visit the WC :)');
+    }
+
+
 
 	//console.log("last" + bulletY);
 });

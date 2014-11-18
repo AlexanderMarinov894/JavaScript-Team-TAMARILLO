@@ -38,7 +38,7 @@ function lostLife () {
     if (enemyY > 400 && enemyY < 401) {
         lives--;
         if(lives == 0) {
-            alert('Game over bro');
+            if(!alert("Game over bro, you've been eaten by aliens!!")){window.location.reload();}
         }
     }
 }
