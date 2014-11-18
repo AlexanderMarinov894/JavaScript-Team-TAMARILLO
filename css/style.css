@@ -1,3 +1,7 @@
+html {
+
+}
+
 main {
     margin: auto;
 }
@@ -13,4 +17,6 @@ main #mainGame {
 
 main #controlPanel {
     border: 1px solid #000000;
+    background: url('../img/background_level1.jpg');
+    border-left: 1px solid white;
 }

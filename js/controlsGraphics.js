@@ -3,6 +3,7 @@ var ctxControls = canvasControls.getContext('2d');
 var W = canvasControls.width;
 var H = canvasControls.height;
 ctxControls.font = "20px Tahoma";
+ctxControls.fillStyle = 'white';
 
 var left = new Image();
 var right = new Image();
