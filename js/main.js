@@ -28,18 +28,22 @@ function enemyReborn() {
 	bulletX = 1000;
 }
 var moveEnemy = enemyY;
-var isHitted = bulletX>= enemyX-30 && 
-			   bulletX <= enemyX + 128;
+var tempScore = 0;
+
 while (moveEnemy < 480) {
     setInterval(function enemyAttack() {
+    	if((bulletX>= enemyX-30 && bulletX <= enemyX + 128 &&
+    					bulletY >= enemyY && bulletY <= enemyY+68)) {
+    		score += 1000; //Adding point to the score
+    	}
+    	if(score > 0 && score % 5000 == 0) {
+    		enemyY += 0.03;
+    	}
         enemyY += 0.02;
         if(enemyY >= 450 || (bulletX>= enemyX-30 && bulletX <= enemyX + 128 &&
         					bulletY >= enemyY && bulletY <= enemyY+68)) {
-        	console.log('HIT!!!');
-        	if((bulletX>= enemyX-30 && bulletX <= enemyX + 128 &&
-        					bulletY >= enemyY && bulletY <= enemyY+68)) {
-        		score += 1000; //Adding point to the score
-        	}
+        	//console.log('HIT!!!');
+        	
 			//console.log(score);
         	enemyReborn();
         	return;
@@ -68,7 +72,9 @@ function animate() {
 	ctx.save();
 	clear();
 	drawShip();
-	drawBullet();
+	if(isFired == true) {
+		drawBullet();
+	}
    	drawEnemy();
 	changeScore();
     lostLife();
