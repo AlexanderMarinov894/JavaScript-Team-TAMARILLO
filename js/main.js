@@ -19,6 +19,7 @@ var level = 0;		//Initial level
 var enemySpeed = 0.02;	//Initial enemy speed
 var bulletSpeed = 5.01;	//Initial bullet speed
 var shipSpeed = 25;		//Initial ship speed
+
 function drawEnemy() {
 	ctx.drawImage(enemy, enemyX, enemyY);
     
@@ -50,9 +51,6 @@ while (moveEnemy < 480) {
         enemyY += enemySpeed;
         if(enemyY >= 450 || (bulletX>= enemyX-30 && bulletX <= enemyX + 128 &&
         					bulletY >= enemyY && bulletY <= enemyY+68)) {
-        	//console.log('HIT!!!');
-        	
-			//console.log(score);
         	enemyReborn();
         	return;
         }
@@ -73,6 +71,7 @@ function changeLevel() {
 	enemySpeed += enemySpeed;
 	bulletSpeed += 3;
 	shipSpeed += 10;
+	alert("congratulations you are now on level "+ level + "!!\n Press Enter to continue");
 }
 
 function drawShip() {
@@ -83,7 +82,6 @@ function Drawable() {
 	
 }
 function animate() {
-	//renderGame();	//render background
 	ctx.save();
 	clear();
 	drawShip();
@@ -108,14 +106,14 @@ var isFired = false;		//check whether a fire ball was fired
 var staticBullet = bulletY;
 document.addEventListener('keydown', function(e) {
 	var keycode = e.keyCode;
-	if(keycode == 39) {				//right
+	if(keycode == 39) {		//right
 	   if(shipX >= W - 118){
 			shipX += 0;
 	   }else{
 		   shipX += shipSpeed;
 	   }
 	}
-	if(keycode == 37) {							   //left
+	if(keycode == 37) {		//left
 		if(shipX <= 0){
 			shipX -= 0;
 		}else{
