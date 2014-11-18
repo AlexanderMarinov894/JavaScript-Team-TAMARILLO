@@ -1,8 +1,16 @@
+main {
+    margin: auto;
+}
+
 main #mainGame {
     width: 900px;
     height: 600px;
     float: left;
     margin-left: 70px;
-    border: 1px solid black;
+    border: 1px solid #000000;
     background: url('../img/background_level1.jpg');
+}
+
+main #controlPanel {
+    border: 1px solid #000000;
 }
