@@ -38,9 +38,7 @@ function lostLife () {
     if (enemyY > 400 && enemyY < 401) {
         lives--;
         if(lives == 0) {
-            ctx.clearRect(0,0, W, H);
+            alert('Game over bro');
         }
-        console.log(lives);
-        console.log(enemyY);
     }
 }
