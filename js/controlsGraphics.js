@@ -26,3 +26,8 @@ ctrl.onload = function() {
     ctxControls.drawImage(ctrl, 120, 440);
     ctxControls.fillText("Shoot", 125, 525);
 };
+
+function changeScore () {
+    ctxControls.clearRect(0,0, 160, 20);
+    ctxControls.fillText('Score: ' + score, 20, 20);
+}

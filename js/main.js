@@ -13,6 +13,7 @@ var enemy = new Image();
 enemy.src = 'img/enemy.png';
 var bullet = new Image();
 bullet.src = 'img/bullet.png';
+var score = 0; //Initial score
 function drawEnemy() {
 	ctx.drawImage(enemy, enemyX, enemyY);
     
@@ -33,6 +34,8 @@ while (moveEnemy < 480) {
         if(enemyY >= 450 || (bulletX>= enemyX-30 && bulletX <= enemyX + 128 &&
         					bulletY >= enemyY && bulletY <= enemyY+68)) {
         	console.log('HIT!!!');
+			score += 1000; //Adding point to the score
+			console.log(score);
         	enemyReborn();
         	return;
         }
@@ -63,6 +66,7 @@ function animate() {
 	drawShip();
 	drawBullet();
    	drawEnemy();
+	changeScore();
     window.requestAnimationFrame(animate);
 }
 
@@ -117,8 +121,6 @@ document.addEventListener('keydown', function(e) {
 
 	//console.log("last" + bulletY);
 });
-
-
 
 window.addEventListener('load', init);
 
