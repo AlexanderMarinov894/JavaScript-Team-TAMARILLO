@@ -31,3 +31,16 @@ function changeScore () {
     ctxControls.clearRect(0,0, 160, 20);
     ctxControls.fillText('Score: ' + score, 20, 20);
 }
+
+function lostLife () {
+    ctxControls.clearRect(140,0, 160, 20);
+    ctxControls.fillText('Lives: ' + lives, 180, 20);
+    if (enemyY > 400 && enemyY < 401) {
+        lives--;
+        if(lives == 0) {
+            ctx.clearRect(0,0, W, H);
+        }
+        console.log(lives);
+        console.log(enemyY);
+    }
+}

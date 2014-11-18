@@ -14,6 +14,8 @@ enemy.src = 'img/enemy.png';
 var bullet = new Image();
 bullet.src = 'img/bullet.png';
 var score = 0; //Initial score
+var lives = 3;
+
 function drawEnemy() {
 	ctx.drawImage(enemy, enemyX, enemyY);
     
@@ -38,11 +40,11 @@ while (moveEnemy < 480) {
         					bulletY >= enemyY && bulletY <= enemyY+68)) {
         		score += 1000; //Adding point to the score
         	}
-			console.log(score);
+			//console.log(score);
         	enemyReborn();
         	return;
         }
-        console.log("enemy - >" +enemyY);
+        //console.log("enemy - >" +enemyY);
         
     }, 3);
     moveEnemy-=enemyY;
@@ -69,6 +71,7 @@ function animate() {
 	drawBullet();
    	drawEnemy();
 	changeScore();
+    lostLife();
     window.requestAnimationFrame(animate);
 }
 
@@ -112,7 +115,7 @@ document.addEventListener('keydown', function(e) {
 						return;
 					}
 					bulletY -= 5.01;
-					console.log(" bullet - > " +bulletY);
+					//console.log(" bullet - > " +bulletY);
 				},15);
 				temp-= bulletY;
 			}
