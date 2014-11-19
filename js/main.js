@@ -43,7 +43,7 @@ while (moveEnemy < 480) {
         if ((bulletX >= enemyX - 30 && bulletX <= enemyX + 128 &&
             bulletY >= enemyY && bulletY <= enemyY + 68)) {
             score += 1000; //Adding point to the score
-            if (score == 3000 || score == 6000 || score == 8000) {
+            if (score == 10000 || score == 20000 || score == 30000) {
                 level++;
             }
         }
