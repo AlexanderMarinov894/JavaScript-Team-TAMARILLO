@@ -15,7 +15,7 @@ var bullet = new Image();
 ship.src = 'img/spaceship.png';
 enemy.src = 'img/enemy.png';
 bullet.src = 'img/bullet.png';
-background.src = 'img/background_level1.jpg';
+background.src = 'img/level1.jpg';
 /*================*/
 var score = 0; //Initial score
 var lives = 3;
@@ -81,13 +81,13 @@ var bulletY = shipY - 40;
 
 function changeLevel() {
 	if(level == 1) {
-		background.src = 'img/background_level2.jpg';		//change background on level 1
+		background.src = 'img/level2.jpg';		//change background on level 1
 	}
 	if(level == 2) {
-		background.src = 'img/background_level3.jpg';		//change background on level 2
+		background.src = 'img/level3.jpg';		//change background on level 2
 	}
 	if(level == 3) {
-		background.src = 'img/background_level4.jpg';		//change background on level 3
+		background.src = 'img/level4.jpg';		//change background on level 3
 	}  
     enemySpeedY += enemySpeedY;
     bulletSpeed += 3;
