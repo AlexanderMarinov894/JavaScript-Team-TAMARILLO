@@ -13,7 +13,7 @@ var bullet = new Image();
 var score = 0; //Initial score
 var lives = 3;
 var level = 0;		//Initial level 
-var enemySpeed = 0.02;	//Initial enemy speed
+var enemySpeedY = 0.02;	//Initial enemy speed
 var enemySpeedX = 0.02;	//Initial enemy speed
 var bulletSpeed = 5.01;	//Initial bullet speed
 var shipSpeed = 25;		//Initial ship speed
@@ -57,7 +57,7 @@ while (moveEnemy < 480) {
         }
         /**================================*/
 
-        enemyY += enemySpeed;
+        enemyY += enemySpeedY;
         if ((bulletX >= enemyX - 30 && bulletX <= enemyX + 128 &&
             bulletY >= enemyY && bulletY <= enemyY + 68)) {
             enemyReborn();
@@ -76,7 +76,7 @@ var bulletY = shipY - 40;
 
 function changeLevel() {
     //change background
-    enemySpeed += enemySpeed;
+    enemySpeedY += enemySpeedY;
     bulletSpeed += 3;
     shipSpeed += 10;
     alert("Cgratulations you are now on level " + level + "!!\n Press Enter to continue");
@@ -108,21 +108,24 @@ var isFired = false;		//check whether a fire ball was fired
 var staticBullet = bulletY;
 document.addEventListener('keydown', function (e) {
     var keycode = e.keyCode;
-    if (keycode == 39) {		//right
+    /**right arrow - move right**/
+    if (keycode == 39) {
         if (shipX >= W - 118) {
             shipX += 0;
         } else {
             shipX += shipSpeed;
         }
     }
-    if (keycode == 37) {		//left
+    /**left arrow - move left**/
+    if (keycode == 37) {
         if (shipX <= 0) {
             shipX -= 0;
         } else {
             shipX -= shipSpeed;
         }
     }
-    if (keycode == 17) {  //ctrl  fire
+    /**ctrl - fire**/
+    if (keycode == 17) {
 
         if (!isFired) {
             var temp = bulletY;
@@ -144,8 +147,8 @@ document.addEventListener('keydown', function (e) {
         }
         isFired = true;
     }
-
-    if (keycode == 80) {							   //P - pause
+    /**p - pause**/
+    if (keycode == 80) {
         alert('Now you are free to visit the WC :)');
     }
 });

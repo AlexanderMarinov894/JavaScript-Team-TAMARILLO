@@ -1,5 +1,5 @@
 html {
-
+    background: url('../img/background_level1.jpg');
 }
 
 main {
@@ -12,6 +12,7 @@ main #mainGame {
     float: left;
     margin-left: 70px;
     border: 1px solid #000000;
+    border-left: 1px solid white;
     background: url('../img/background_level1.jpg');
 }
 
