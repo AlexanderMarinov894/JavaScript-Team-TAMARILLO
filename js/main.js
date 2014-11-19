@@ -14,6 +14,7 @@ var score = 0; //Initial score
 var lives = 3;
 var level = 0;		//Initial level 
 var enemySpeed = 0.02;	//Initial enemy speed
+var enemySpeedX = 0.02;	//Initial enemy speed
 var bulletSpeed = 5.01;	//Initial bullet speed
 var shipSpeed = 25;		//Initial ship speed
 
@@ -27,6 +28,7 @@ function enemyReborn() {
     enemyY = -33;
     enemyX = Math.floor(Math.random() * 750);
     bulletX = 1000;
+    enemySpeedX = enemySpeedX * -1;
 }
 
 var moveEnemy = enemyY;
@@ -44,6 +46,16 @@ while (moveEnemy < 480) {
             changeLevel();
             currentLevel = level;
         }
+
+        /**Diagonal movement of the ship**/
+        enemyX += enemySpeedX;
+        if (enemyX > 765) {
+            enemySpeedX = enemySpeedX * (-1);
+        }
+        if (enemyX < 0) {
+            enemySpeedX = enemySpeedX * (-1);
+        }
+        /**================================*/
 
         enemyY += enemySpeed;
         if ((bulletX >= enemyX - 30 && bulletX <= enemyX + 128 &&
@@ -67,7 +79,7 @@ function changeLevel() {
     enemySpeed += enemySpeed;
     bulletSpeed += 3;
     shipSpeed += 10;
-    alert("congratulations you are now on level " + level + "!!\n Press Enter to continue");
+    alert("Cgratulations you are now on level " + level + "!!\n Press Enter to continue");
 }
 
 function animate() {
