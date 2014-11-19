@@ -7,9 +7,16 @@ var shipX = 430;	//default cords for ship
 var shipY = 450;	//default cords for ship
 var enemyX = Math.floor(Math.random() * 750);
 var enemyY = -33;
+	/*Adding images*/
+var background = new Image();
 var ship = new Image();
 var enemy = new Image();
 var bullet = new Image();
+ship.src = 'img/spaceship.png';
+enemy.src = 'img/enemy.png';
+bullet.src = 'img/bullet.png';
+background.src = 'img/background_level1.jpg';
+/*================*/
 var score = 0; //Initial score
 var lives = 3;
 var level = 0;		//Initial level 
@@ -18,11 +25,9 @@ var enemySpeedX = 0.02;	//Initial enemy speed
 var bulletSpeed = 5.01;	//Initial bullet speed
 var shipSpeed = 25;		//Initial ship speed
 
-ship.src = 'img/spaceship.png';
-enemy.src = 'img/enemy.png';
-bullet.src = 'img/bullet.png';
 
-function enemyReborn() {
+
+function enemyReborn() {		//Respawns enemy ship
     clear();
     drawEnemy();
     enemyY = -33;
@@ -38,7 +43,7 @@ while (moveEnemy < 480) {
         if ((bulletX >= enemyX - 30 && bulletX <= enemyX + 128 &&
             bulletY >= enemyY && bulletY <= enemyY + 68)) {
             score += 1000; //Adding point to the score
-            if (score == 10000 || score == 20000 || score == 30000) {
+            if (score == 3000 || score == 6000 || score == 8000) {
                 level++;
             }
         }
@@ -75,16 +80,25 @@ var bulletX = shipX + 45;
 var bulletY = shipY - 40;
 
 function changeLevel() {
-    //change background
+	if(level == 1) {
+		background.src = 'img/background_level2.jpg';		//change background on level 1
+	}
+	if(level == 2) {
+		background.src = 'img/background_level3.jpg';		//change background on level 2
+	}
+	if(level == 3) {
+		background.src = 'img/background_level4.jpg';		//change background on level 3
+	}  
     enemySpeedY += enemySpeedY;
     bulletSpeed += 3;
     shipSpeed += 10;
-    alert("Cgratulations you are now on level " + level + "!!\n Press Enter to continue");
+    alert("Congratulations you are now on level " + level + "!!\n Press Enter to continue");
 }
 
 function animate() {
     ctx.save();
     clear();
+    drawBackground();
     drawShip();
     if (isFired == true) {
         drawBullet();

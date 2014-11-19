@@ -1,3 +1,7 @@
+function drawBackground() {
+	ctx.drawImage(background, 0, 0)
+	
+}
 function drawEnemy() {
     ctx.drawImage(enemy, enemyX, enemyY);
 }

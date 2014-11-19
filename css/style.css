@@ -1,4 +1,4 @@
-html {
+body {
     background: url('../img/background_level1.jpg');
 }
 
@@ -11,13 +11,10 @@ main #mainGame {
     height: 600px;
     float: left;
     margin-left: 70px;
-    border: 1px solid #000000;
-    border-left: 1px solid white;
-    background: url('../img/background_level1.jpg');
+    border: 1px solid #fff;
 }
 
 main #controlPanel {
     border: 1px solid #000000;
-    background: url('../img/background_level1.jpg');
-    border-left: 1px solid white;
+    border: none;
 }
