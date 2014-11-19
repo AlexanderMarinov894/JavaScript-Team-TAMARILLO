@@ -8,11 +8,8 @@ var shipY = 450;	//default cords for ship
 var enemyX = Math.floor(Math.random() * 750);
 var enemyY = -33;
 var ship = new Image();
-ship.src = 'img/spaceship.png';
 var enemy = new Image();
-enemy.src = 'img/enemy.png';
 var bullet = new Image();
-bullet.src = 'img/bullet.png';
 var score = 0; //Initial score
 var lives = 3;
 var level = 0;		//Initial level 
@@ -20,10 +17,10 @@ var enemySpeed = 0.02;	//Initial enemy speed
 var bulletSpeed = 5.01;	//Initial bullet speed
 var shipSpeed = 25;		//Initial ship speed
 
-function drawEnemy() {
-    ctx.drawImage(enemy, enemyX, enemyY);
+ship.src = 'img/spaceship.png';
+enemy.src = 'img/enemy.png';
+bullet.src = 'img/bullet.png';
 
-}
 function enemyReborn() {
     clear();
     drawEnemy();
@@ -31,6 +28,7 @@ function enemyReborn() {
     enemyX = Math.floor(Math.random() * 750);
     bulletX = 1000;
 }
+
 var moveEnemy = enemyY;
 var currentLevel = 0;
 while (moveEnemy < 480) {
@@ -57,18 +55,13 @@ while (moveEnemy < 480) {
             enemyReborn();
             return;
         }
-        //console.log("enemy - >" +enemyY);
-
     }, 3);
     moveEnemy -= enemyY;
 }
-//var bulletX = shipX;
+
 var bulletX = shipX + 45;
 var bulletY = shipY - 40;
-function drawBullet() {
-    ctx.drawImage(bullet, bulletX, bulletY);
 
-}
 function changeLevel() {
     //change background
     enemySpeed += enemySpeed;
@@ -77,13 +70,6 @@ function changeLevel() {
     alert("congratulations you are now on level " + level + "!!\n Press Enter to continue");
 }
 
-function drawShip() {
-    ctx.drawImage(ship, shipX, shipY);
-}
-
-function Drawable() {
-
-}
 function animate() {
     ctx.save();
     clear();
@@ -150,9 +136,6 @@ document.addEventListener('keydown', function (e) {
     if (keycode == 80) {							   //P - pause
         alert('Now you are free to visit the WC :)');
     }
-
-
-    //console.log("last" + bulletY);
 });
 
 window.addEventListener('load', init);
