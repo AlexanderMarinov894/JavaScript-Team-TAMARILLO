@@ -21,149 +21,149 @@ var bulletSpeed = 5.01;	//Initial bullet speed
 var shipSpeed = 25;		//Initial ship speed
 
 function drawEnemy() {
-	ctx.drawImage(enemy, enemyX, enemyY);
-    
+    ctx.drawImage(enemy, enemyX, enemyY);
+
 }
 function enemyReborn() {
-	clear();
-	drawEnemy();
-	enemyY = -33;
-	enemyX = Math.floor(Math.random() * 750);
-	bulletX = 1000;
+    clear();
+    drawEnemy();
+    enemyY = -33;
+    enemyX = Math.floor(Math.random() * 750);
+    bulletX = 1000;
 }
 var moveEnemy = enemyY;
 var currentLevel = 0;
 while (moveEnemy < 480) {
-	setInterval(function enemyAttack() {
-		if((bulletX>= enemyX-30 && bulletX <= enemyX + 128 &&
-			bulletY >= enemyY && bulletY <= enemyY+68)) {
-			score += 1000; //Adding point to the score
-			if(score == 10000 || score == 20000 || score == 30000) {
-				level++;
-			}
-		}
-		if (currentLevel < level) {
-			changeLevel();
-			currentLevel = level;
-		}
+    setInterval(function enemyAttack() {
+        if ((bulletX >= enemyX - 30 && bulletX <= enemyX + 128 &&
+            bulletY >= enemyY && bulletY <= enemyY + 68)) {
+            score += 1000; //Adding point to the score
+            if (score == 10000 || score == 20000 || score == 30000) {
+                level++;
+            }
+        }
+        if (currentLevel < level) {
+            changeLevel();
+            currentLevel = level;
+        }
 
-		enemyY += enemySpeed;
-		if((bulletX>= enemyX-30 && bulletX <= enemyX + 128 &&
-			bulletY >= enemyY && bulletY <= enemyY+68)) {
-			enemyReborn();
-			return;
-		} else if (enemyY >= 450) {
-			lostLife();
-			enemyReborn();
-			return;
-		}
-		//console.log("enemy - >" +enemyY);
+        enemyY += enemySpeed;
+        if ((bulletX >= enemyX - 30 && bulletX <= enemyX + 128 &&
+            bulletY >= enemyY && bulletY <= enemyY + 68)) {
+            enemyReborn();
+            return;
+        } else if (enemyY >= 450) {
+            lostLife();
+            enemyReborn();
+            return;
+        }
+        //console.log("enemy - >" +enemyY);
 
-	}, 3);
-	moveEnemy-=enemyY;
+    }, 3);
+    moveEnemy -= enemyY;
 }
 //var bulletX = shipX;
-var bulletX = shipX+45;
+var bulletX = shipX + 45;
 var bulletY = shipY - 40;
 function drawBullet() {
-	ctx.drawImage(bullet, bulletX, bulletY);
+    ctx.drawImage(bullet, bulletX, bulletY);
 
 }
 function changeLevel() {
-	//change background
-	enemySpeed += enemySpeed;
-	bulletSpeed += 3;
-	shipSpeed += 10;
-	alert("congratulations you are now on level "+ level + "!!\n Press Enter to continue");
+    //change background
+    enemySpeed += enemySpeed;
+    bulletSpeed += 3;
+    shipSpeed += 10;
+    alert("congratulations you are now on level " + level + "!!\n Press Enter to continue");
 }
 
 function drawShip() {
-	ctx.drawImage(ship, shipX, shipY);
+    ctx.drawImage(ship, shipX, shipY);
 }
 
 function Drawable() {
-	
+
 }
 function animate() {
-	ctx.save();
-	clear();
-	drawShip();
-	if(isFired == true) {
-		drawBullet();
-	}
-   	drawEnemy();
-	changeScore();
-	printLostLife();
+    ctx.save();
+    clear();
+    drawShip();
+    if (isFired == true) {
+        drawBullet();
+    }
+    drawEnemy();
+    displayChangeScore();
+    displayLostLife();
+    displayLevel();
     window.requestAnimationFrame(animate);
 }
 
 function clear() {
-	ctx.clearRect(0,0, W, H);
+    ctx.clearRect(0, 0, W, H);
 }
 function init() {
-	animate();
+    animate();
 }
 
 //move the ship
 var isFired = false;		//check whether a fire ball was fired
 var staticBullet = bulletY;
-document.addEventListener('keydown', function(e) {
-	var keycode = e.keyCode;
-	if(keycode == 39) {		//right
-	   if(shipX >= W - 118){
-			shipX += 0;
-	   }else{
-		   shipX += shipSpeed;
-	   }
-	}
-	if(keycode == 37) {		//left
-		if(shipX <= 0){
-			shipX -= 0;
-		}else{
-			shipX -= shipSpeed;
-		}
-	}
-	if(keycode == 17) {  //ctrl  fire
+document.addEventListener('keydown', function (e) {
+    var keycode = e.keyCode;
+    if (keycode == 39) {		//right
+        if (shipX >= W - 118) {
+            shipX += 0;
+        } else {
+            shipX += shipSpeed;
+        }
+    }
+    if (keycode == 37) {		//left
+        if (shipX <= 0) {
+            shipX -= 0;
+        } else {
+            shipX -= shipSpeed;
+        }
+    }
+    if (keycode == 17) {  //ctrl  fire
 
-		if (!isFired) {
-			var temp = bulletY;
-			bulletX = shipX + 45;
-			bulletY = staticBullet;
+        if (!isFired) {
+            var temp = bulletY;
+            bulletX = shipX + 45;
+            bulletY = staticBullet;
 
-			while(temp > 0) {
-				setInterval(function(){
-					if (bulletY <= -40) {		
-						isFired = false;		
-						return;
-					}
-					bulletY -= bulletSpeed;
-					//console.log(" bullet - > " +bulletY);
-				},15);
-				temp-= bulletY;
-			}
-			
-		}
-		isFired = true;
-	}
+            while (temp > 0) {
+                setInterval(function () {
+                    if (bulletY <= -40) {
+                        isFired = false;
+                        return;
+                    }
+                    bulletY -= bulletSpeed;
+                    //console.log(" bullet - > " +bulletY);
+                }, 15);
+                temp -= bulletY;
+            }
 
-    if(keycode == 80) {							   //P - pause
+        }
+        isFired = true;
+    }
+
+    if (keycode == 80) {							   //P - pause
         alert('Now you are free to visit the WC :)');
     }
 
 
-
-	//console.log("last" + bulletY);
+    //console.log("last" + bulletY);
 });
 
 window.addEventListener('load', init);
 
-window.requestAnimationFrame = function() {
+window.requestAnimationFrame = function () {
     return window.requestAnimationFrame ||
         window.webkitRequestAnimationFrame ||
         window.mozRequestAnimationFrame ||
         window.msRequestAnimationFrame ||
         window.oRequestAnimationFrame ||
-        function(f) {
-            window.setTimeout(f,1e3/60);
+        function (f) {
+            window.setTimeout(f, 1e3 / 60);
         }
 }();
