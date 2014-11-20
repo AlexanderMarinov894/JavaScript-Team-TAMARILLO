@@ -69,6 +69,8 @@ function lostLife () {
     lives--;
     console.log(enemyY);
     if(lives == 0) {
-        window.open ('http://google.com','_self',false)
+        if(!alert('Sorry bro, the aliens ate you! Please, try again!')) {
+            location.reload();
+        }
     }
 }
