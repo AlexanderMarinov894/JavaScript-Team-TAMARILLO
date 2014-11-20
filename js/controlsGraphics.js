@@ -69,6 +69,6 @@ function lostLife () {
     lives--;
     console.log(enemyY);
     if(lives == 0) {
-        if(!alert("Game over bro, you've been eaten by aliens!!")){window.location.reload();}
+        window.open ('http://google.com','_self',false)
     }
 }

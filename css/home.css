@@ -1,0 +1,62 @@
+@font-face {
+    font-family: "KGBlankSpace";
+    src: url('../css/fonts/KGBlankSpaceSolid.ttf') format("truetype");
+}
+
+body {
+    background: url('../img/background_level1.jpg');
+    font: 600 14px/24px "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", Sans-Serif;
+
+}
+
+div#text {
+    margin-top: 20px;
+    font-family: KGBlankSpace;
+    font-size: 20px;
+    text-align: center;
+    color: #ffffff;
+}
+
+button.menu {
+    border: 0;
+    background: #0087cc;
+    border-radius: 4px;
+    box-shadow: 0 5px 0 #006599;
+    color: #fff;
+    cursor: pointer;
+    font: inherit;
+    margin-top: 30px;
+    outline: 0;
+    padding: 22px 60px;
+    transition: all .1s linear;
+}
+
+button.menu#start {
+    padding: 22px 157px;
+    margin-top: 150px;
+}
+
+
+button:active {
+    box-shadow: 0 2px 0 #006599;
+    transform: translateY(3px);
+}
+
+main {
+    margin: auto;
+}
+
+main #mainGame {
+    width: 900px;
+    height: 600px;
+    float: left;
+    margin-left: 70px;
+    border-left: 1px solid #fff;
+    border-right: 1px solid #fff;
+    text-align: center;
+}
+
+main #controlPanel {
+    border: 1px solid #000000;
+    border: none;
+}
